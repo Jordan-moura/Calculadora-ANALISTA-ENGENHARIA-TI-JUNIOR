@@ -88,3 +88,66 @@ Calculadora.cs
 
 Saída
 ![Saida](Imagens/resultadoExercicio02.png)
+
+# Solução Exercicio 03
+
+### Problema Inicial
+
+Aplicação não está calculando a penúltima operação corretamente.
+
+### Solução Implementada
+
+Ao analisar a aplicação, identificamos que a penúltima operação não está sendo calculada corretamente. Isso ocorre devido ao uso do tipo `int`, que tem limitações quanto ao tamanho dos valores que pode armazenar. Dessa forma, basta alterar o tipo do resultado da operação de soma para `long`, permitindo lidar com intervalos maiores. Todavia, aproveitamos também a oportunidade para uniformizar o tipo das variáveis, optando pelo `decimal` para garantir precisão e flexibilidade em todos os cálculos, já que a variável resultado iniciou com este tipo.
+
+Para resolver esse problema, fizemos as seguintes alterações nos arquivos `Calculadora.cs` e `Operacoes.cs`:
+
+1. **Atualização do Tipo das Variáveis**: Alteramos o tipo das variáveis `valorA` e `valorB` de `int` para `decimal` no arquivo `Operacoes.cs`. Isso permite que a aplicação trabalhe com valores numéricos de forma mais precisa, sem se limitar ao intervalo restrito do tipo `int`.
+
+```csharp
+using System;
+namespace Calculadora
+{
+    public class Operacoes
+    {
+        public decimal valorA {get;set;}
+        public char operador { get; set; }
+        public decimal valorB { get; set; }
+        public decimal resultado { get; set; }
+
+    }
+}
+```
+
+2. **Refatoração dos Métodos**: Atualizamos os tipos de retorno dos métodos na classe `Calculadora.cs` de `int` para `decimal`. Essa alteração garante consistência e precisão nos cálculos realizados pela calculadora, pois todos os resultados agora são tratados como números decimais.
+
+```csharp
+  public decimal soma(Operacoes operacao)
+  {
+      return operacao.valorA + operacao.valorB;
+  }
+  public decimal subtracao(Operacoes operacao)
+  {
+      return operacao.valorA - operacao.valorB;
+  }
+  public decimal multiplicacao(Operacoes operacao)
+  {
+      return operacao.valorA * operacao.valorB;
+  }
+   public decimal divisao(Operacoes operacao)
+{
+    try
+    {
+        return (decimal)operacao.valorA / operacao.valorB;
+    }
+    catch (DivideByZeroException ex)
+    {
+        Console.Write("Erro: Tentativa de divisão por zero. -> ");
+        return 0; 
+    }
+}
+```
+
+Com essas modificações, a aplicação agora é capaz de lidar com operações matemáticas de forma mais robusta, garantindo resultados precisos mesmo para valores numéricos grandes ou com casas decimais.
+
+Saída
+![Resolvido](Imagens/resultadoExercicio03.png)
