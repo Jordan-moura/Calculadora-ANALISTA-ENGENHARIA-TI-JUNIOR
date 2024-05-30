@@ -191,3 +191,72 @@ public void ImprimirFilaOperacoes(Queue<Operacoes> fila)
 Saída
 ![Resolvido](Imagens/resultadoExercicio04.png)
 
+# Solução Exercicio 05
+
+### Problema Inicial
+
+Crie uma nova pilha (Stack) para guardar o resultado de cada calculo efetuado e imprima a pilha ao final.
+
+### Solução Implementada
+
+Para resolver o problema inicial, seguimos duas etapas:
+
+1. No arquivo `Program.cs`, criamos uma pilha, adicionamos os resultados das operações a cada processamento e chamamos o método `ImprimirPilhaResultados` no final para que imprima os resultados.
+
+Program.cs
+```csharp
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
+namespace Calculadora
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Queue<Operacoes> filaOperacoes = new Queue<Operacoes>();
+            // Criacao da pilha
+            Stack<decimal> resultados = new Stack<decimal>();  
+            filaOperacoes.Enqueue(new Operacoes { valorA = 2, valorB = 3, operador = '+' });
+            filaOperacoes.Enqueue(new Operacoes { valorA = 14, valorB = 8, operador = '-' });
+            filaOperacoes.Enqueue(new Operacoes { valorA = 5, valorB = 6, operador = '*' });
+            filaOperacoes.Enqueue(new Operacoes { valorA = 2147483647, valorB = 2, operador = '+' });
+            filaOperacoes.Enqueue(new Operacoes { valorA = 18, valorB = 3, operador = '/' });
+
+            Calculadora calculadora = new Calculadora();
+
+            while (filaOperacoes.Count != 0)
+            {
+                calculadora.ImprimirFilaOperacoes(filaOperacoes);
+                Operacoes operacao = filaOperacoes.Dequeue();
+                Console.WriteLine("\nProcessando a operação que está na primeira posição da fila...");
+                calculadora.calcular(operacao);
+                // adiciona os resultados na pilha
+                resultados.Push(operacao.resultado);
+                Console.WriteLine("{0} {1} {2} = {3}\n", operacao.valorA,operacao.operador,operacao.valorB, operacao.resultado);
+            }
+            // imprime os resultados que foram armazenados na pilha
+            calculadora.ImprimirPilhaResultados(resultados);
+        }
+
+    }
+}
+```
+
+2. No arquivo `Calculadora.cs`, criamos um novo método que imprime os resultados da pilha.
+
+Calculadora.cs
+```csharp
+public void ImprimirPilhaResultados(Stack<decimal> resultados)
+{
+    Console.WriteLine("Resultado das operações:");
+    foreach (var valor in resultados)
+    {
+        Console.WriteLine($"{valor}");
+    }
+}
+```
+
+Saída
+![Resolvido](Imagens/resultadoExercicio05.png)

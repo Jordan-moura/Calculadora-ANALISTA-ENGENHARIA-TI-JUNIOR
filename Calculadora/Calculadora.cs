@@ -52,6 +52,14 @@ namespace Calculadora
                 contagem++;
             }
         }
+        public void ImprimirPilhaResultados(Stack<decimal> resultados)
+        {
+            Console.WriteLine("Resultado das operações:");
+            foreach (var valor in resultados)
+            {
+                Console.WriteLine($"{valor}");
+            }
+        }
 
     }
 }
