@@ -151,3 +151,43 @@ Com essas modificações, a aplicação agora é capaz de lidar com operações 
 
 Saída
 ![Resolvido](Imagens/resultadoExercicio03.png)
+
+# Solução Exercicio 04
+
+### Problema Inicial
+
+Implemente uma funcionalidade para imprimir toda a lista de operações a serem processadas após cada cálculo realizado.
+
+### Solução Implementada
+
+Para resolver esse problema, foi criado um novo método chamado `ImprimirFilaOperacoes` em `Calculadora.cs` que imprime todas as operações que serão processadas em ordem. Esse método foi então chamado no `Program.cs` antes de chamar o método que processa a operação.
+
+Program.cs
+```csharp
+while (filaOperacoes.Count != 0)
+{
+    calculadora.ImprimirFilaOperacoes(filaOperacoes);
+    Operacoes operacao = filaOperacoes.Dequeue();
+    Console.WriteLine("\nProcessando a operação que está na primeira posição da fila...");
+    calculadora.calcular(operacao);
+    Console.WriteLine("{0} {1} {2} = {3}\n", operacao.valorA,operacao.operador,operacao.valorB, operacao.resultado);
+}
+```
+
+Calculadora.cs
+```csharp
+public void ImprimirFilaOperacoes(Queue<Operacoes> fila)
+{
+  int contagem = 1;
+  Console.WriteLine("Operações a serem processadas:");
+  foreach (var operacao in fila)
+  {
+      Console.WriteLine($"Operação {contagem}: {operacao.valorA} {operacao.operador} {operacao.valorB} = ?");
+      contagem++;
+  }
+}
+```
+
+Saída
+![Resolvido](Imagens/resultadoExercicio04.png)
+

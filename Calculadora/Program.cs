@@ -19,11 +19,13 @@ namespace Calculadora
 
             while (filaOperacoes.Count != 0)
             {
+                calculadora.ImprimirFilaOperacoes(filaOperacoes);
                 Operacoes operacao = filaOperacoes.Dequeue();
+                Console.WriteLine("\nProcessando a operação que está na primeira posição da fila...");
                 calculadora.calcular(operacao);
-                Console.WriteLine("{0} {1} {2} = {3}", operacao.valorA, operacao.operador, operacao.valorB, operacao.resultado);
+                Console.WriteLine("{0} {1} {2} = {3}\n", operacao.valorA, operacao.operador, operacao.valorB, operacao.resultado);
             }
-
         }
+
     }
 }
