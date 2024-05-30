@@ -23,3 +23,25 @@ Você precisa corrigir os seguintes problemas no codigo:
 Não existe resposta certa ou errada, o objetivo do case é avaliar a linha de raciocínio de cada candidato.
 Você é livre para fazer na linguagem de sua preferência, desde que aplique as mesmas funcionalidades e tarefas deste case.
 Dica: Utilize Visual Code ou Visual Studio Community para realizar as tarefas.
+
+# Solução Exercicio 01
+
+### Problema Inicial
+
+A aplicação estava processando o primeiro item da fila infinitamente.
+
+### Solução Implementada
+
+Para resolver este problema, foi necessário editar o programa `Program.cs` em dois pontos:
+
+1. **Correção da Condição do Loop**:
+   - Na linha 20, substituímos `filaOperacoes.Count >= 0`, que roda enquanto o número de elementos na fila seja maior ou igual a zero, por `filaOperacoes.Count != 0`, ajustando a condição do `while` para interromper o loop quando o número de elementos na fila se tornar zero.
+
+2. **Substituição de `Peek()` por `Dequeue()`**:
+   - Na linha 22, substituímos `filaOperacoes.Peek()`, que obtém o elemento do topo da fila sem removê-lo, por `filaOperacoes.Dequeue()`, que também obtém o topo da fila, mas o remove.
+
+Program.cs
+![Resolvido](Imagens/exercicio01.png)
+
+Saída
+![Saida](Imagens/resultado.png)
