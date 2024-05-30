@@ -11,6 +11,7 @@ namespace Calculadora
                 case '+': operacao.resultado= soma(operacao);break;
                 case '-': operacao.resultado = subtracao(operacao);break;
                 case '*': operacao.resultado = multiplicacao(operacao);break;
+                case '/': operacao.resultado = divisao(operacao); break;
                 default: operacao.resultado = 0; break;
             }
             return operacao;
@@ -27,6 +28,18 @@ namespace Calculadora
         {
             return operacao.valorA * operacao.valorB;
         }
-       
+        public decimal divisao(Operacoes operacao)
+        {
+            try
+            {
+                return (decimal)operacao.valorA / operacao.valorB;
+            }
+            catch (DivideByZeroException ex)
+            {
+                Console.Write("Erro: Tentativa de divisão por zero. -> ");
+                return 0;
+            }
+        }
+
     }
 }

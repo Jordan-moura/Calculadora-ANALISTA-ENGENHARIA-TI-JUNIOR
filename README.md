@@ -44,4 +44,47 @@ Program.cs
 ![Resolvido](Imagens/exercicio01.png)
 
 Saída
-![Saida](Imagens/resultado.png)
+![Saida](Imagens/resultadoExercicio01.png)
+
+# Solução Exercicio 02
+
+### Problema Inicial
+
+Implemente a funcionalidade de divisão.
+
+### Solução Implementada
+
+Para resolver este problema, foram realizadas as seguintes alterações no programa `Calculadora.cs`:
+
+1. **Adição do Operador de Divisão**:
+   - Na linha 14, foi incluído o seguinte código:
+     ```csharp
+     case '/': operacao.resultado = divisao(operacao); break;
+     ```
+   Isso permite que a calculadora reconheça o operador de divisão e execute a operação correspondente.
+
+2. **Implementação do Método de Divisão**:
+   - Na linha 31, foi adicionado um novo método para realizar a operação de divisão:
+   ```csharp
+    public decimal divisao(Operacoes operacao)
+   {
+       try
+       {
+           return (decimal)operacao.valorA / operacao.valorB;
+       }
+       catch (DivideByZeroException ex)
+       {
+           Console.Write("Erro: Tentativa de divisão por zero. -> ");
+           return 0; 
+       }
+   }
+     ```
+   Este método calcula a divisão entre os dois valores fornecidos.
+
+Com estas modificações, a funcionalidade de divisão foi devidamente implementada na calculadora.
+
+Calculadora.cs
+![Resolvido](Imagens/exercicio02.png)
+
+Saída
+![Saida](Imagens/resultadoExercicio02.png)
